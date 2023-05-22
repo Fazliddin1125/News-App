@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, get_list_or_404
-from django.views.generic import ListView
+from django.urls import reverse_lazy
+from django.views.generic import ListView, UpdateView, CreateView, DeleteView
 
 
 from .models import News, Category
@@ -82,14 +83,20 @@ class ContactPageView(View):
 
 class CategoryNewsView(View):
     def get(self, request, cat_name):
-        Name = cat_name
-        CategoryNews = News.published.all().filter(category__name=cat_name)
+
+        CategoryNews = get_list_or_404(News, category__name=cat_name)
         context = {
             'category_data': CategoryNews,
-            'name': Name
+            'name': cat_name
         }
         return render(request, 'news/category_page.html', context)
 
+class NewsUpdateView(UpdateView):
+    model = News
+    fields = ('title', 'body', 'image', 'category', 'status')
+    template_name = 'crud/news_edit.html'
 
-
-
+class NewsDeleteView(DeleteView):
+    model = News
+    template_name = 'crud/news_delete.html'
+    success_url = reverse_lazy('home_page')

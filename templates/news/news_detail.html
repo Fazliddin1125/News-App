@@ -1,11 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<h1>{{ new.title }}</h1>
-<p>Published date: {{ new.publish_time }}</p>
-</body>
-</html>
+{% extends 'news/base.html' %}
+{% block title %} {{ new.title }} {% endblock title %}
+{% block content %}
+<section style="margin-top:15px;" id="contentSection">
+    <div class="row  ">
+      <div class="col-lg-12 col-md-8 col-sm-8">
+        <div class="left_content">
+
+          <div class="fashion_technology_area">
+            <div class="row">
+              <div class="col-12 ">
+                <h2 style="margin-top: 25px; margin-bottom: 25px" ><span  >{{ new.title }}</span></h2>
+                <ul class="business_catgnav wow fadeInDown">
+
+
+                  <li>
+                    <figure class="bsbig_fig"> <a href="{{ new.get_absolute_url }}" class="featured_img"> <img alt="" src="{{ new.image.url }}"> <span class="overlay"></span> </a>
+                      <figcaption> <a href="{{ new.get_absolute_url }}">{{ new.title }}</a> </figcaption>
+
+                      <p style="margin-top: 25px; font-size: 20px; margin-bottom: 25px;" >{{  new.body }}</p>
+
+                    </figure>
+                  </li>
+
+
+                </ul>
+
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+{% endblock content %}
