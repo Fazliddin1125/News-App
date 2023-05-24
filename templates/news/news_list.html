@@ -8,7 +8,7 @@
 <h1>All News</h1>
 
 {% for new in news %}
-    <a href="{% url 'news_detail_page' new.id %}" ><li>{{ new.title }}</li></a>
+    <a href="{% url 'news_detail_page' new.id %}" ><li>{{ new}}</li></a>
 {% endfor %}
 
 

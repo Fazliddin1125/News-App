@@ -9,13 +9,6 @@ from .forms import ContactForm
 from django.views import View
 
 # Create your views here.
-def news_list(request):
-    news = get_list_or_404(News, status=News.Status.Published)
-
-    context = {
-        "news": news
-    }
-    return render(request, 'news/news_list.html', context)
 
 def news_detail(request, news):
     new = get_object_or_404(News, slug=news, status=News.Status.Published)
@@ -100,3 +93,8 @@ class NewsDeleteView(DeleteView):
     model = News
     template_name = 'crud/news_delete.html'
     success_url = reverse_lazy('home_page')
+
+class NewsCreateView(CreateView):
+    model = News
+    template_name = 'crud/news_create.html'
+    fields = ('title', 'slug', 'body', 'image', 'category', 'status')

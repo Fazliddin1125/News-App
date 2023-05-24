@@ -47,10 +47,6 @@ class News(models.Model):
     def get_absolute_url(self):
         return reverse("news_detail_page", args=[self.slug])
 
-    def get_absolute_url_edit(self):
-        return reverse("news_edit_page", args=[self.slug])
-    def get_absolute_url_delete(self):
-        return reverse("news_delete_page", args=[self.slug])
 class Contact(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField(max_length=100)
