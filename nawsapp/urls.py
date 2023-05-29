@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("", HomePageView.as_view(), name='home_page'),
     path('news/', include('news_app.urls')),
+    path('account/', include('accounts.urls'))
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

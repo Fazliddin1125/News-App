@@ -35,12 +35,19 @@
           <div class="header_top_left">
             <ul class="top_nav">
               <li><a href="{% url 'home_page' %}">Home</a></li>
-              <li><a href="#">About</a></li>
+              <li><a href="{% url 'news_create_page' %}">Create</a></li>
               <li><a href="{% url 'contact' %}">Contact</a></li>
             </ul>
           </div>
           <div class="header_top_right">
+             {% if request.user.is_authenticated %}
+              <p  class="fs-3" ><a style="color: white; margin: 0 15px 0 15px;" href="{% url 'profile' %}" >My Profile</a></p>
+            {% else %}
+             <p  class="fs-3" ><a style="color: white; margin: 0 15px 0 15px;" href="{% url 'login' %}" >Login</a></p>
+            {% endif %}
+
             <p>{% now "jS F Y H:i" %}</p>
+
           </div>
         </div>
       </div>
