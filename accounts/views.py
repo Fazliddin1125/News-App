@@ -1,7 +1,10 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.views.generic import CreateView
 from django.contrib.auth import authenticate, login
-from .forms import LoginForm
+from .forms import LoginForm, UserRegistrationForm
+from django.contrib.auth.forms import UserCreationForm
+from django.urls import reverse_lazy
 
 
 def user_login(request):
@@ -38,3 +41,31 @@ def dashboard(request):
     }
 
     return render(request, 'pages/dashboard.html', context)
+
+
+# def user_register(request):
+#     if request.method == "POST":
+#         user_form = UserRegistrationForm(request.POST)
+#         if user_form.is_valid():
+#             new_user = user_form.save(commit=False)
+#             new_user.set_password(
+#                 user_form.cleaned_data['password']
+#             )
+#             new_user.save()
+#             context = {
+#                 "new_user": new_user
+#             }
+#             return render(request, 'registration/register_done.html', context)
+#     else:
+#         user_form = UserRegistrationForm()
+#         context = {
+#             "user_form": user_form
+#         }
+#         return render(request, 'registration/register.html', context)
+
+
+
+class UserCreateView(CreateView):
+    form_class = UserCreationForm
+    success_url = reverse_lazy('login')
+    template_name = "registration/register.html"

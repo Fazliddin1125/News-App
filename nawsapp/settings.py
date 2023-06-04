@@ -132,3 +132,12 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = 'home_page'
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'fazliddinbahromov9717@gmail.com'
+EMAIL_HOST_PASSWORD = ''
+
+EMAIL_PORT = 587
