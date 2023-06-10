@@ -133,15 +133,15 @@ LANGUAGES = [
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_ROOT = '/home/djangomo/fbahromov.uz/django/staticfiles'
-STATICFILES_DIRS = '/home/djangomo/fbahromov.uz/django/static'
+STATIC_ROOT = '/home/fbahromo/fbahromov.uz/django/staticfiles'
+STATICFILES_DIRS = ('/home/fbahromo/fbahromov.uz/django/static', )
 # STATICFILES_DIRS = [BASE_DIR / 'static']
 # STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 
 
 MEDIA_URL = 'media/'
-MEDIA_ROOT = '/home/djangomo/fbahromov.uz/django/media'
+MEDIA_ROOT = '/home/fbahromo/fbahromov.uz/django/media'
 # MEDIA_ROOT = BASE_DIR / 'media'
 
 # Default primary key field type
