@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "c06a5ad7749d70b996928ea8353c16dfe175f76ad70555a3c4bd4025790fef9c"
+            "sha256": "a4a175dbd77a370e9fd5e943ad421fd3cccbc591308fe0c1bd20c53fe86b087b"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -46,6 +46,14 @@
             ],
             "index": "pypi",
             "version": "==1.3.5"
+        },
+        "django-modeltranslation": {
+            "hashes": [
+                "sha256:d2caecfa3b030994125a3ece06a045a06cacfe28db494eba87d6828894dffe7d",
+                "sha256:e7e9b8a83dfd9fdfd96addfec94896f6b3be18e952bcd9d5f9a2b1af1db7a7b9"
+            ],
+            "index": "pypi",
+            "version": "==0.18.10"
         },
         "pillow": {
             "hashes": [
@@ -119,6 +127,14 @@
             "index": "pypi",
             "version": "==9.5.0"
         },
+        "python-decouple": {
+            "hashes": [
+                "sha256:ba6e2657d4f376ecc46f77a3a615e058d93ba5e465c01bbe57289bfb7cce680f",
+                "sha256:d0d45340815b25f4de59c974b855bb38d03151d81b037d9e3f463b0c9f8cbd66"
+            ],
+            "index": "pypi",
+            "version": "==3.8"
+        },
         "sqlparse": {
             "hashes": [
                 "sha256:5430a4fe2ac7d0f93e66f1efc6e1338a41884b7ddf2a350cedd20ccc4d9d28f3",
@@ -127,6 +143,14 @@
             "markers": "python_version >= '3.5'",
             "version": "==0.4.4"
         },
+        "typing-extensions": {
+            "hashes": [
+                "sha256:88a4153d8505aabbb4e13aacb7c486c2b4a33ca3b3f807914a9b4c844c471c26",
+                "sha256:d91d5919357fe7f681a9f2b5b4cb2a5f1ef0a1e9f59c4d8ff0d3491e05c0ffd5"
+            ],
+            "markers": "python_version >= '3.7'",
+            "version": "==4.6.3"
+        },
         "tzdata": {
             "hashes": [
                 "sha256:11ef1e08e54acb0d4f95bdb1be05da659673de4acbd21bf9c69e94cc5e907a3a",
@@ -134,6 +158,14 @@
             ],
             "markers": "sys_platform == 'win32'",
             "version": "==2023.3"
+        },
+        "whitenoise": {
+            "hashes": [
+                "sha256:599dc6ca57e48929dfeffb2e8e187879bfe2aed0d49ca419577005b7f2cc930b",
+                "sha256:a02d6660ad161ff17e3042653c8e3f5ecbb2a2481a006bde125b9efb9a30113a"
+            ],
+            "index": "pypi",
+            "version": "==6.4.0"
         }
     },
     "develop": {}

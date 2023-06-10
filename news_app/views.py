@@ -25,6 +25,7 @@ def news_detail(request, news):
 
 
     if request.method == "POST":
+        print("Helloooooo")
         if request.user.is_authenticated:
             comment_form = CommentForm(data=request.POST)
             if comment_form.is_valid():
@@ -33,10 +34,14 @@ def news_detail(request, news):
                 new_comment.user = request.user
                 new_comment.save()
                 comment_form = CommentForm()
+            else:
+                comment_form = CommentForm()
         else:
             return redirect('login')
     else:
         comment_form = CommentForm()
+        comment_count = comments.count()
+
     context = {
         'news': new,
         'comments': comments,
@@ -125,7 +130,7 @@ class NewsDeleteView(OnlyLoggedSuperUser, DeleteView):
 class NewsCreateView(OnlyLoggedSuperUser , CreateView):
     model = News
     template_name = 'crud/news_create.html'
-    fields = ('title', 'slug', 'body', 'image', 'category', 'status')
+    fields = ('title', 'slug', 'body', 'image', 'category')
     prepopulated_fields = {"slug": ('title',)}
 
 

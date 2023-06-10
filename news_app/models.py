@@ -35,7 +35,7 @@ class News(models.Model):
     publish_time = models.DateTimeField(default=timezone.now)
     created_time = models.DateTimeField(auto_now_add=True)
     update_Time = models.DateTimeField(auto_now=True)
-    status = models.CharField(max_length=2, choices=Status.choices, default=Status.Draft)
+    status = models.CharField(max_length=2, choices=Status.choices, default=Status.Published)
     objects = models.Manager()  # default manager
     published = PublishedManager()
 
