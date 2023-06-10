@@ -70,7 +70,11 @@
           {% for category in categories %}
           <li><a href="{{ category.get_absolute_url }}">{{  category.name }}</a></li>
           {% endfor %}
-
+           <li>
+                <form method="get" action="{% url 'search_results' %}">
+                    <input type="search" name="q" placeholder="Qidiruv..." class="form-control">
+                </form>
+            </li>
 
         </ul>
       </div>

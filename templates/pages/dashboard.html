@@ -4,5 +4,32 @@
 <h1>Profile</h1>
 <h2>{{ user.username }}</h2>
 <h2><a href="{% url 'logout' %}" >Logout</a></h2>
-<h2><a href="{% url 'password_change' %}">Parolni tiklash</a></h2>
+<a href="{{ profile.photo.url }}" ><img width="50%" src="{{ profile.photo.url }}" alt="56565" ></a>
+
+<h5><a href="{% url 'password_change' %}">Parolni o'zgartirish</a></h5>
+<h5><a href="{% url 'edit' %}">Profilni o'zgartirish</a></h5>
 {% endblock content %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

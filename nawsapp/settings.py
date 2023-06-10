@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'news_app',
     'accounts',
+    'hitcount',
 ]
 
 MIDDLEWARE = [
@@ -108,7 +109,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Tashkent'
 
 USE_I18N = True
 
@@ -141,3 +142,5 @@ EMAIL_HOST_USER = 'fazliddinbahromov9717@gmail.com'
 EMAIL_HOST_PASSWORD = ''
 
 EMAIL_PORT = 587
+
+LOGIN_URL = 'login'

@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
+from .models import Profile
 
 class LoginForm(forms.Form):
     username = forms.CharField()
@@ -7,7 +8,7 @@ class LoginForm(forms.Form):
 
 class UserRegistrationForm(forms.ModelForm):
     password = forms.CharField(label="Parol", widget=forms.PasswordInput)
-    password2 = forms.CharField(label="Parolni tiklash", widget=forms.PasswordInput)
+    password2 = forms.CharField(label="Parolni takrorlash", widget=forms.PasswordInput)
 
     class Meta:
         model = User
@@ -18,6 +19,16 @@ class UserRegistrationForm(forms.ModelForm):
         if data['password'] != data['password2']:
             raise forms.ValidationError("Parolingiz o'xshash emas.")
         return data['password2']
+
+class UserEditForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'email']
+
+class ProfileEditForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['date_of_birth', "photo"]
 
 
 

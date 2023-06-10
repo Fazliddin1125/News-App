@@ -2,19 +2,47 @@ from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, get_list_or_404
 from django.urls import reverse_lazy
 from django.views.generic import ListView, UpdateView, CreateView, DeleteView
-
-
+from django.contrib.auth.mixins import LoginRequiredMixin
+from .custom_permission import OnlyLoggedSuperUser
 from .models import News, Category
-from .forms import ContactForm
+from .forms import ContactForm, CommentForm
 from django.views import View
+from django.shortcuts import redirect
+from django.db.models import Q, Count
+from hitcount.utils import get_hitcount_model
+from hitcount.views import HitCountMixin
 
 # Create your views here.
 
 def news_detail(request, news):
     new = get_object_or_404(News, slug=news, status=News.Status.Published)
 
+
+    comments = new.comments.filter(active=True)
+    comment_count = comments.count()
+    new_comment = None
+
+
+
+    if request.method == "POST":
+        if request.user.is_authenticated:
+            comment_form = CommentForm(data=request.POST)
+            if comment_form.is_valid():
+                new_comment = comment_form.save(commit=False)
+                new_comment.news = new
+                new_comment.user = request.user
+                new_comment.save()
+                comment_form = CommentForm()
+        else:
+            return redirect('login')
+    else:
+        comment_form = CommentForm()
     context = {
-        'new': new
+        'news': new,
+        'comments': comments,
+        'new_comment': new_comment,
+        'comment_form': comment_form,
+        'comment_count': comment_count
     }
     return render(request, 'news/news_detail.html', context)
 
@@ -84,17 +112,30 @@ class CategoryNewsView(View):
         }
         return render(request, 'news/category_page.html', context)
 
-class NewsUpdateView(UpdateView):
+class NewsUpdateView(OnlyLoggedSuperUser, UpdateView):
     model = News
     fields = ('title', 'body', 'image', 'category', 'status')
     template_name = 'crud/news_edit.html'
 
-class NewsDeleteView(DeleteView):
+class NewsDeleteView(OnlyLoggedSuperUser, DeleteView):
     model = News
     template_name = 'crud/news_delete.html'
     success_url = reverse_lazy('home_page')
 
-class NewsCreateView(CreateView):
+class NewsCreateView(OnlyLoggedSuperUser , CreateView):
     model = News
     template_name = 'crud/news_create.html'
     fields = ('title', 'slug', 'body', 'image', 'category', 'status')
+    prepopulated_fields = {"slug": ('title',)}
+
+
+class SearchResultsList(ListView):
+    model = News
+    template_name = 'news/search_result.html'
+    context_object_name = 'barcha_yangiliklar'
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        return News.objects.filter(
+            Q(title__icontains=query) | Q(body__icontains=query)
+        )
